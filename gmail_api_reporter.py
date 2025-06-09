@@ -1,405 +1,338 @@
-import requests
-import json
-import base64
 import pickle
 import os
-from datetime import datetime, timedelta
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
+import base64
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from datetime import datetime
+import pytz
+import yaml
 
-class GmailAPISportsReport:
-    def __init__(self, config=None):
-        self.today = datetime.now()
-        self.yesterday = self.today - timedelta(days=1)
-        self.tomorrow = self.today + timedelta(days=1)
-        self.config = config or {}
-        
-        # Gmail API scopes
-        self.SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+# Importar nossos módulos de dados reais
+from real_sports_data import RealSportsData
+from real_news_scraper import RealNewsScraper
+
+class GmailAPISportsReportREAL:
+    """Relatório esportivo com dados REAIS via Gmail API"""
+    
+    SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+    
+    def __init__(self, credentials_file='credentials.json', token_file='token.pickle', env_file='env.yaml'):
+        self.credentials_file = credentials_file
+        self.token_file = token_file
         self.service = None
+        self.timezone = pytz.timezone('America/Sao_Paulo')
         
-    def authenticate_gmail(self):
-        """Autenticar com Gmail API usando Service Account ou OAuth"""
+        # Carregar configurações
+        self.config = self._load_config(env_file)
+        
+        # Inicializar coletores de dados REAIS
+        self.sports_collector = RealSportsData()
+        self.news_scraper = RealNewsScraper()
+        
+        self._authenticate()
+    
+    def _load_config(self, env_file):
+        """Carrega configurações do arquivo env.yaml"""
+        try:
+            with open(env_file, 'r', encoding='utf-8') as file:
+                return yaml.safe_load(file)
+        except Exception as e:
+            print(f"Erro ao carregar configurações: {e}")
+            return {}
+    
+    def _authenticate(self):
+        """Autentica com Gmail API usando OAuth2"""
         creds = None
         
-        # Verificar se existe token salvo
-        if os.path.exists('token.pickle'):
-            with open('token.pickle', 'rb') as token:
+        if os.path.exists(self.token_file):
+            with open(self.token_file, 'rb') as token:
                 creds = pickle.load(token)
         
-        # Se não tem credenciais válidas, fazer login
         if not creds or not creds.valid:
             if creds and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
             else:
-                # Para Cloud Functions, usar variáveis de ambiente
-                credentials_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
-                if credentials_json:
-                    import json
-                    credentials_info = json.loads(credentials_json)
-                    flow = InstalledAppFlow.from_client_config(
-                        credentials_info, self.SCOPES)
-                    # Para servidor, usar flow sem interação
-                    creds = flow.run_local_server(port=0)
-                else:
-                    print("❌ Credenciais do Google não encontradas")
-                    return False
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    self.credentials_file, self.SCOPES)
+                creds = flow.run_local_server(port=0)
             
-            # Salvar credenciais para próxima execução
-            with open('token.pickle', 'wb') as token:
+            with open(self.token_file, 'wb') as token:
                 pickle.dump(creds, token)
         
-        try:
-            self.service = build('gmail', 'v1', credentials=creds)
-            return True
-        except Exception as e:
-            print(f"❌ Erro na autenticação: {str(e)}")
-            return False
+        self.service = build('gmail', 'v1', credentials=creds)
+        print("✅ Autenticação Gmail API realizada com sucesso!")
     
-    def get_football_games(self, date):
-        """Coleta jogos de futebol usando APIs gratuitas"""
-        games = []
+    def collect_real_data(self):
+        """Coleta todos os dados REAIS"""
+        print("🔄 Coletando dados esportivos REAIS...")
         
-        try:
-            # TheSportsDB API - jogos do dia
-            date_str = date.strftime('%Y-%m-%d')
-            url = f"https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d={date_str}&s=Soccer"
-            
-            response = requests.get(url, timeout=10)
-            if response.status_code == 200:
-                data = response.json()
-                if data.get('events'):
-                    for event in data['events'][:5]:  # Limitar a 5 jogos
-                        if event.get('strLeague') and any(keyword in event.get('strLeague', '').lower() 
-                                                        for keyword in ['brazil', 'brasileir', 'copa', 'libertadores']):
-                            games.append({
-                                'time': event.get('strTime', '00:00')[:5],
-                                'home': event.get('strHomeTeam', 'Time Casa'),
-                                'away': event.get('strAwayTeam', 'Time Visitante'),
-                                'competition': event.get('strLeague', 'Campeonato'),
-                                'audience': self.estimate_audience(event.get('strLeague', ''))
-                            })
-        except Exception as e:
-            print(f"Erro ao buscar jogos: {str(e)}")
+        # 1. Dados esportivos 
+        print("📊 Buscando eventos esportivos...")
+        sports_data = self.sports_collector.get_all_sports_data()
         
-        # Adicionar jogos fictícios se não encontrar dados reais
-        if not games:
-            games = self.get_fallback_games(date)
-            
-        return games[:3]  # Máximo 3 jogos
+        # 2. Notícias via scraping melhorado
+        print("📰 Coletando notícias...")
+        news_data = self.news_scraper.get_all_news()
+        
+        return {
+            'sports_data': sports_data,
+            'news_data': news_data,
+            'collection_time': datetime.now(self.timezone).strftime('%d/%m/%Y %H:%M')
+        }
     
-    def get_fallback_games(self, date):
-        """Jogos fictícios quando API falha"""
-        fallback_games = [
-            {"time": "16:00", "home": "Flamengo", "away": "Vasco", "competition": "Brasileirão", "audience": "8M"},
-            {"time": "18:30", "home": "Corinthians", "away": "Palmeiras", "competition": "Brasileirão", "audience": "10M"},
-            {"time": "21:00", "home": "São Paulo", "away": "Santos", "competition": "Brasileirão", "audience": "6M"}
-        ]
+    def generate_html_report(self, data):
+        """Gera relatório HTML com dados REAIS - versão limpa sem mentiras"""
+        sports_data = data['sports_data']
+        news_data = data['news_data']
         
-        # Variar baseado no dia da semana
-        day_of_week = date.weekday()
-        return [fallback_games[day_of_week % len(fallback_games)]]
-    
-    def estimate_audience(self, competition):
-        """Estima audiência baseada na competição"""
-        audience_map = {
-            'brasileirao': '8M',
-            'libertadores': '12M',
-            'copa do brasil': '6M',
-            'champions league': '15M',
-            'premier league': '10M',
-            'la liga': '8M'
+        # Estatísticas dos dados coletados
+        stats = {
+            'games_today': len(sports_data.get('games_today', [])),
+            'games_tomorrow': len(sports_data.get('games_tomorrow', [])),
+            'recent_results': len(sports_data.get('recent_results', [])),
+            'esports_events': len(sports_data.get('esports_today', [])),
+            'total_news': len(news_data),
+            'news_sources': len(set(n['source'] for n in news_data)) if news_data else 0
         }
         
-        for key, audience in audience_map.items():
-            if key in competition.lower():
-                return audience
-        return '5M'
-    
-    def get_esports_events(self, date):
-        """Coleta eventos de e-sports"""
-        esports = []
-        
-        try:
-            # Eventos fixos baseados no dia da semana
-            day_of_week = date.weekday()
-            
-            events_by_day = {
-                0: [{"time": "20:00", "event": "CBLOL: LOUD vs paiN Gaming", "game": "League of Legends", "audience": "800K"}],
-                1: [{"time": "21:30", "event": "CS Major: FURIA vs Astralis", "game": "CS2", "audience": "1.2M"}],
-                2: [{"time": "19:00", "event": "Free Fire: Corinthians vs Flamengo", "game": "Free Fire", "audience": "2M"}],
-                3: [{"time": "20:30", "event": "Valorant Champions: LOUD vs Sentinels", "game": "Valorant", "audience": "900K"}],
-                4: [{"time": "21:00", "event": "CBLOL Finals", "game": "League of Legends", "audience": "1.5M"}],
-                5: [{"time": "15:00", "event": "CS2 Arena: SK vs Imperial", "game": "CS2", "audience": "600K"}],
-                6: [{"time": "16:00", "event": "Free Fire World Series", "game": "Free Fire", "audience": "3M"}]
-            }
-            
-            esports = events_by_day.get(day_of_week, [])
-            
-        except Exception as e:
-            print(f"Erro ao buscar e-sports: {str(e)}")
-        
-        return esports[:2]  # Máximo 2 eventos
-    
-    def get_holidays_events(self, date):
-        """Coleta feriados e datas especiais"""
-        special_events = []
-        
-        try:
-            # Nager.Date API para feriados brasileiros
-            year = date.year
-            url = f"https://date.nager.at/api/v3/PublicHolidays/{year}/BR"
-            
-            response = requests.get(url, timeout=10)
-            if response.status_code == 200:
-                holidays = response.json()
-                
-                # Verificar próximos feriados (próximos 30 dias)
-                for holiday in holidays:
-                    holiday_date = datetime.strptime(holiday['date'], '%Y-%m-%d')
-                    days_diff = (holiday_date - date).days
-                    
-                    if 0 <= days_diff <= 30:
-                        special_events.append({
-                            'date': holiday_date.strftime('%d/%m'),
-                            'name': holiday['name'],
-                            'days_until': days_diff,
-                            'impact': 'Alto tráfego esperado' if days_diff <= 3 else 'Monitorar campanhas'
-                        })
-        except Exception as e:
-            print(f"Erro ao buscar feriados: {str(e)}")
-        
-        return special_events[:3] if special_events else []
-    
-    def get_sports_news(self):
-        """Coleta notícias esportivas relevantes"""
-        news = [
-            "Neymar volta aos treinos - impacto nas apostas esportivas",
-            "Regulamentação das apostas: nova lei aprovada no Senado",
-            "Copa do Mundo 2026: Brasil confirma participação",
-            "CBLOL: LOUD anuncia novo patrocinador principal",
-            "Mercado esportivo brasileiro cresce 15% em 2024",
-            "Free Fire: Corinthians investe R$ 5M em e-sports",
-            "Brasileirão 2025: novas regras de fair play financeiro"
-        ]
-        
-        # Retornar 3 notícias aleatórias baseadas no dia
-        import random
-        random.seed(self.today.day)  # Seed baseada no dia para consistência
-        return random.sample(news, min(3, len(news)))
-    
-    def generate_opportunities(self):
-        """Gera 10 oportunidades de mídia específicas usando IA básica"""
-        games_today = self.get_football_games(self.today)
-        esports_today = self.get_esports_events(self.today)
-        
-        opportunities = []
-        
-        # Análise baseada em dados reais
-        if games_today:
-            for game in games_today:
-                opportunities.append(f"📺 {game['home']} vs {game['away']} ({game['time']}) - Audiência esperada: {game['audience']}")
-        
-        if esports_today:
-            for event in esports_today:
-                opportunities.append(f"🎮 {event['event']} ({event['time']}) - Público jovem: {event['audience']}")
-        
-        # Oportunidades baseadas no dia da semana
-        day_name = self.today.strftime('%A')
-        if day_name in ['Saturday', 'Sunday']:
-            opportunities.append("📊 Final de semana: +40% engajamento esportivo")
-            opportunities.append("🏠 Famílias em casa: focar campanhas multiplataforma")
-        
-        # Horários premium
-        opportunities.append("⏰ Prime time: 20h-22h - maior CPM e engajamento")
-        opportunities.append("📱 Mobile gaming: 70% audiência feminina 16-35 anos")
-        
-        # Tendências sazonais
-        month = self.today.month
-        if month in [12, 1, 2]:  # Verão
-            opportunities.append("🏖️ Temporada de verão: esportes aquáticos e beach sports")
-        elif month in [6, 7, 8]:  # Inverno
-            opportunities.append("🏟️ Temporada indoor: e-sports e futebol de salão")
-        
-        opportunities.append("📈 Live streaming: crescimento 300% ano/ano")
-        opportunities.append("🎯 Retargeting pós-jogo: janela de 2h ideal para conversão")
-        opportunities.append("🤝 Parcerias influencers: jogadores brasileiros trending")
-        
-        return opportunities[:10]  # Exatamente 10 oportunidades
-    
-    def generate_report(self):
-        """Gera relatório completo personalizado para Artplan"""
-        yesterday_games = self.get_football_games(self.yesterday)
-        today_games = self.get_football_games(self.today)
-        tomorrow_games = self.get_football_games(self.tomorrow)
-        
-        esports_today = self.get_esports_events(self.today)
-        special_events = self.get_holidays_events(self.today)
-        news = self.get_sports_news()
-        opportunities = self.generate_opportunities()
-        
-        report = f"""📊 RELATÓRIO ESPORTIVO DIÁRIO ARTPLAN - {self.today.strftime('%d/%m/%Y')}
-
-🏆 JOGOS DE ONTEM ({self.yesterday.strftime('%d/%m')}):
-{self.format_games(yesterday_games)}
-
-⚽ JOGOS DE HOJE ({self.today.strftime('%d/%m')}):
-{self.format_games(today_games)}
-
-🔮 JOGOS DE AMANHÃ ({self.tomorrow.strftime('%d/%m')}):
-{self.format_games(tomorrow_games)}
-
-🎮 E-SPORTS HOJE:
-{self.format_esports(esports_today)}
-
-📅 EVENTOS ESPECIAIS:
-{self.format_special_events(special_events)}
-
-📰 NOTÍCIAS RELEVANTES:
-{self.format_news(news)}
-
-💡 TOP 10 OPORTUNIDADES DE MÍDIA:
-{self.format_opportunities(opportunities)}
-
----
-🎯 Relatório Automático Artplan via Gmail API
-📧 analytics.artplan@gmail.com
-⏰ Próximo envio: amanhã às 08:00h
-🔗 Dados em tempo real via APIs esportivas + IA
-"""
-        return report
-    
-    def format_games(self, games):
-        if not games:
-            return "- Nenhum jogo programado\n"
-        
-        formatted = ""
-        for game in games:
-            formatted += f"- {game['time']} - {game['home']} vs {game['away']} - {game['competition']} (Audiência: {game['audience']})\n"
-        return formatted
-    
-    def format_esports(self, events):
-        if not events:
-            return "- Nenhum evento programado\n"
-        
-        formatted = ""
-        for event in events:
-            formatted += f"- {event['time']} - {event['event']} ({event['game']}) - Audiência: {event['audience']}\n"
-        return formatted
-    
-    def format_special_events(self, events):
-        if not events:
-            return "- Nenhum evento especial próximo\n"
-        
-        formatted = ""
-        for event in events:
-            days_text = f"em {event['days_until']} dias" if event['days_until'] > 0 else "hoje"
-            formatted += f"- {event['name']} ({event['date']}) - {days_text} - {event['impact']}\n"
-        return formatted
-    
-    def format_news(self, news):
-        if not news:
-            return "- Nenhuma notícia relevante\n"
-        
-        formatted = ""
-        for item in news:
-            formatted += f"- {item}\n"
-        return formatted
-    
-    def format_opportunities(self, opportunities):
-        formatted = ""
-        for i, opp in enumerate(opportunities, 1):
-            formatted += f"{i:2d}. {opp}\n"
-        return formatted
-    
-    def create_message(self, sender, to, subject, message_text):
-        """Cria mensagem de email para Gmail API"""
-        message = MIMEMultipart('alternative')
-        message['to'] = ", ".join(to) if isinstance(to, list) else to
-        message['from'] = sender
-        message['subject'] = subject
-        
-        # Versão texto
-        text_part = MIMEText(message_text, 'plain', 'utf-8')
-        message.attach(text_part)
-        
-        # Versão HTML
-        html_content = self.format_html_report(message_text)
-        html_part = MIMEText(html_content, 'html', 'utf-8')
-        message.attach(html_part)
-        
-        raw_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
-        return {'raw': raw_message}
-    
-    def format_html_report(self, text_report):
-        """Converte relatório texto para HTML com estilo Artplan"""
-        html = f"""
+        html_content = f"""
         <!DOCTYPE html>
         <html>
         <head>
             <meta charset="UTF-8">
             <style>
-                body {{ font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; background: #f5f5f5; }}
-                .container {{ background: white; margin: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }}
-                .header {{ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; }}
-                .header h1 {{ margin: 0; font-size: 24px; }}
-                .content {{ padding: 30px; }}
-                .section {{ margin: 20px 0; padding: 20px; border-left: 4px solid #667eea; background: #f8f9fa; border-radius: 5px; }}
-                .section h3 {{ margin-top: 0; color: #667eea; }}
-                .game {{ background: white; margin: 10px 0; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }}
-                .footer {{ background: #333; color: white; padding: 20px; text-align: center; }}
-                .emoji {{ font-size: 1.2em; }}
-                .opportunity {{ background: #e8f4fd; padding: 10px; margin: 5px 0; border-radius: 5px; border-left: 3px solid #007bff; }}
+                body {{ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; }}
+                .container {{ max-width: 900px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }}
+                .header {{ background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 30px; border-radius: 10px 10px 0 0; text-align: center; }}
+                .header h1 {{ margin: 0; font-size: 28px; }}
+                .subtitle {{ margin: 10px 0 0 0; opacity: 0.9; font-size: 16px; }}
+                .section {{ padding: 25px; border-bottom: 1px solid #eee; }}
+                .section:last-child {{ border-bottom: none; }}
+                .section h2 {{ color: #1e3c72; margin-top: 0; font-size: 22px; display: flex; align-items: center; }}
+                .badge {{ background: #1e3c72; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; margin-left: 10px; }}
+                .real-badge {{ background: #28a745; }}
+                .live-badge {{ background: #dc3545; }}
+                .game {{ background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #1e3c72; }}
+                .game-time {{ font-weight: bold; color: #1e3c72; font-size: 14px; }}
+                .game-teams {{ font-size: 16px; font-weight: 600; margin: 5px 0; }}
+                .game-info {{ font-size: 13px; color: #666; }}
+                .result {{ background: #e8f5e8; border-left-color: #28a745; }}
+                .result .game-time {{ color: #28a745; }}
+                .news-item {{ padding: 15px; margin: 10px 0; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #17a2b8; }}
+                .news-link {{ color: #007bff; text-decoration: none; font-weight: 500; }}
+                .news-link:hover {{ text-decoration: underline; }}
+                .news-description {{ color: #666; font-size: 13px; margin-top: 5px; }}
+                .stats {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin: 20px 0; }}
+                .stat-card {{ background: #e3f2fd; padding: 15px; border-radius: 8px; text-align: center; }}
+                .stat-number {{ font-size: 24px; font-weight: bold; color: #1976d2; }}
+                .stat-label {{ font-size: 12px; color: #666; margin-top: 5px; }}
+                .footer {{ text-align: center; padding: 20px; background: #f8f9fa; color: #666; border-radius: 0 0 10px 10px; }}
+                .esports {{ background: #fff3e0; border-left-color: #ff9800; }}
+                .esports .game-time {{ color: #ff9800; }}
+                .category-tag {{ background: #6c757d; color: white; padding: 2px 6px; border-radius: 3px; font-size: 11px; margin-left: 8px; }}
             </style>
         </head>
         <body>
             <div class="container">
                 <div class="header">
-                    <h1>📊 Relatório Esportivo Artplan</h1>
-                    <p>{self.today.strftime('%d/%m/%Y')} - Powered by Gmail API</p>
+                    <h1>🏆 Relatório Esportivo Artplan</h1>
+                    <p class="subtitle">Dados Coletados em Tempo Real • {data['collection_time']}</p>
                 </div>
-                <div class="content">
-                    <pre style="white-space: pre-wrap; font-family: inherit; background: #f8f9fa; padding: 20px; border-radius: 5px;">{text_report}</pre>
+                
+                <div class="section">
+                    <h2>📊 Resumo dos Dados Coletados</h2>
+                    <div class="stats">
+                        <div class="stat-card">
+                            <div class="stat-number">{stats['games_today']}</div>
+                            <div class="stat-label">Jogos Hoje</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{stats['games_tomorrow']}</div>
+                            <div class="stat-label">Jogos Amanhã</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{stats['recent_results']}</div>
+                            <div class="stat-label">Resultados Recentes</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{stats['esports_events']}</div>
+                            <div class="stat-label">E-sports</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{stats['total_news']}</div>
+                            <div class="stat-label">Notícias</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{stats['news_sources']}</div>
+                            <div class="stat-label">Fontes</div>
+                        </div>
+                    </div>
                 </div>
+        """
+        
+        # Seção de Jogos de Hoje
+        if sports_data.get('games_today'):
+            html_content += f"""
+                <div class="section">
+                    <h2>⚽ Jogos de Hoje <span class="badge real-badge">BRASILEIRÃO</span></h2>
+            """
+            for game in sports_data['games_today']:
+                html_content += f"""
+                    <div class="game">
+                        <div class="game-time">{game.get('time', 'TBD')} • {game.get('date', '')}</div>
+                        <div class="game-teams">{game.get('home_team', 'Time A')} vs {game.get('away_team', 'Time B')}</div>
+                        <div class="game-info">{game.get('league', 'Liga')} • {game.get('venue', 'Estádio')} • {game.get('status', 'Agendado')}</div>
+                    </div>
+                """
+            html_content += "</div>"
+        
+        # Seção de Resultados Recentes
+        if sports_data.get('recent_results'):
+            html_content += f"""
+                <div class="section">
+                    <h2>📈 Resultados Recentes <span class="badge live-badge">FINALIZADOS</span></h2>
+            """
+            for game in sports_data['recent_results']:
+                html_content += f"""
+                    <div class="game result">
+                        <div class="game-time">{game.get('time', 'TBD')} • {game.get('date', '')}</div>
+                        <div class="game-teams">{game.get('home_team', 'Time A')} {game.get('score', '0-0')} {game.get('away_team', 'Time B')}</div>
+                        <div class="game-info">{game.get('league', 'Liga')} • {game.get('venue', 'Estádio')} • {game.get('attendance', 'Público')}</div>
+                    </div>
+                """
+            html_content += "</div>"
+        
+        # Seção de Jogos de Amanhã
+        if sports_data.get('games_tomorrow'):
+            html_content += f"""
+                <div class="section">
+                    <h2>📅 Jogos de Amanhã <span class="badge">PROGRAMAÇÃO</span></h2>
+            """
+            for game in sports_data['games_tomorrow']:
+                html_content += f"""
+                    <div class="game">
+                        <div class="game-time">{game.get('time', 'TBD')} • {game.get('date', '')}</div>
+                        <div class="game-teams">{game.get('home_team', 'Time A')} vs {game.get('away_team', 'Time B')}</div>
+                        <div class="game-info">{game.get('league', 'Liga')} • {game.get('venue', 'Estádio')} • {game.get('tv', 'TV')}</div>
+                    </div>
+                """
+            html_content += "</div>"
+        
+        # Seção de E-sports
+        if sports_data.get('esports_today'):
+            html_content += f"""
+                <div class="section">
+                    <h2>🎮 E-sports Hoje <span class="badge">CBLOL • VALORANT</span></h2>
+            """
+            for game in sports_data['esports_today']:
+                html_content += f"""
+                    <div class="game esports">
+                        <div class="game-time">{game.get('time', 'TBD')} • {game.get('date', '')}</div>
+                        <div class="game-teams">{game.get('home_team', 'Team A')} vs {game.get('away_team', 'Team B')}</div>
+                        <div class="game-info">{game.get('league', 'Liga')} • {game.get('game', 'Game')} • {game.get('viewers', 'Audiência')}</div>
+                    </div>
+                """
+            html_content += "</div>"
+        
+        # Seção de Notícias REAIS
+        if news_data:
+            html_content += f"""
+                <div class="section">
+                    <h2>📰 Notícias Esportivas <span class="badge real-badge">{stats['news_sources']} FONTES</span></h2>
+            """
+            for news in news_data[:12]:  # Mostrar até 12 notícias
+                html_content += f"""
+                    <div class="news-item">
+                        <a href="{news.get('link', '#')}" class="news-link" target="_blank">
+                            {news.get('title', 'Título da notícia')}
+                        </a>
+                        <span class="category-tag">{news.get('category', news.get('source', 'Notícia'))}</span>
+                        <div class="news-description">{news.get('description', '')}</div>
+                        <small>{news.get('source', 'Fonte')} • {news.get('date', 'Data')}</small>
+                    </div>
+                """
+            html_content += "</div>"
+        
+        html_content += f"""
                 <div class="footer">
-                    <p>🎯 <strong>Artplan Analytics</strong> | analytics.artplan@gmail.com</p>
-                    <p>Relatório automático gerado às {self.today.strftime('%H:%M')} via Gmail API</p>
-                    <p>🔒 Autenticação segura • 🚀 APIs esportivas em tempo real</p>
+                    <p><strong>🚀 Sistema Artplan - Relatório Esportivo Automatizado</strong></p>
+                    <p>📊 Dados coletados de múltiplas fontes • 📰 {stats['total_news']} notícias • ⚽ {stats['games_today'] + stats['games_tomorrow']} jogos</p>
+                    <p><small>Relatório gerado automaticamente em {data['collection_time']}</small></p>
                 </div>
             </div>
         </body>
         </html>
         """
-        return html
+        
+        return html_content
     
-    def send_email(self, report):
-        """Envia email usando Gmail API"""
+    def send_report(self, recipient_email: str):
+        """Envia relatório com dados REAIS via Gmail"""
         try:
-            if not self.authenticate_gmail():
-                return False
+            print("🔄 Iniciando coleta de dados REAIS...")
             
-            recipients = self.config.get('recipients', ['caio.castro@artplan.com.br'])
-            sender = 'analytics.artplan@gmail.com'
-            subject = f"📊 Relatório Esportivo Artplan - {self.today.strftime('%d/%m/%Y')}"
+            # Coletar dados reais
+            real_data = self.collect_real_data()
             
-            message = self.create_message(sender, recipients, subject, report)
+            print("📧 Gerando relatório HTML...")
+            html_content = self.generate_html_report(real_data)
             
-            result = self.service.users().messages().send(
-                userId='me', body=message).execute()
+            print("📤 Enviando email...")
             
-            print(f"✅ Email enviado via Gmail API!")
-            print(f"📧 Message ID: {result['id']}")
-            print(f"📬 Destinatários: {', '.join(recipients)}")
-            return True
+            # Criar mensagem
+            message = MIMEMultipart('alternative')
+            message['to'] = recipient_email
+            message['from'] = 'artplan.sports.report@gmail.com'
+            message['subject'] = f'🏆 Relatório Esportivo Artplan - {real_data["collection_time"]}'
             
-        except HttpError as error:
-            print(f"❌ Erro da Gmail API: {error}")
-            return False
+            # Adicionar conteúdo HTML
+            html_part = MIMEText(html_content, 'html', 'utf-8')
+            message.attach(html_part)
+            
+            # Enviar
+            raw_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
+            send_message = self.service.users().messages().send(
+                userId='me',
+                body={'raw': raw_message}
+            ).execute()
+            
+            message_id = send_message.get('id')
+            
+            print(f"✅ Email enviado com sucesso!")
+            print(f"📧 Destinatário: {recipient_email}")
+            print(f"🆔 Message ID: {message_id}")
+            print(f"📊 Dados coletados:")
+            print(f"   • {len(real_data['sports_data'].get('games_today', []))} jogos hoje")
+            print(f"   • {len(real_data['sports_data'].get('games_tomorrow', []))} jogos amanhã")
+            print(f"   • {len(real_data['sports_data'].get('recent_results', []))} resultados recentes")
+            print(f"   • {len(real_data['sports_data'].get('esports_today', []))} eventos de e-sports")
+            print(f"   • {len(real_data['news_data'])} notícias de {len(set(n['source'] for n in real_data['news_data']))} fontes")
+            
+            return message_id
+            
         except Exception as e:
-            print(f"❌ Erro ao enviar email: {str(e)}")
-            return False 
+            print(f"❌ Erro ao enviar relatório: {e}")
+            return None
+
+if __name__ == "__main__":
+    # Teste do sistema completo com dados REAIS
+    print("🚀 SISTEMA DE RELATÓRIO ESPORTIVO ARTPLAN")
+    print("=" * 60)
+    
+    reporter = GmailAPISportsReportREAL()
+    
+    # Email de teste
+    test_email = "caio.castro@artplan.com.br"
+    
+    print(f"📧 Enviando relatório para: {test_email}")
+    message_id = reporter.send_report(test_email)
+    
+    if message_id:
+        print(f"\n🎉 SUCESSO! Relatório esportivo enviado!")
+        print(f"🆔 Message ID: {message_id}")
+        print(f"✅ Contém jogos de hoje, amanhã, resultados recentes, e-sports e notícias reais")
+    else:
+        print("\n❌ Falha no envio do relatório")

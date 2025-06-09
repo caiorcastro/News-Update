@@ -1,9 +1,12 @@
-functions-framework==3.5.0
-requests==2.31.0
-python-dateutil==2.8.2
-beautifulsoup4==4.12.2
-lxml==4.9.3
-google-auth==2.23.0
+# Dependências para o sistema de relatório esportivo REAL
+google-auth==2.17.3
 google-auth-oauthlib==1.0.0
 google-auth-httplib2==0.1.0
-google-api-python-client==2.100.0 
+google-api-python-client==2.88.0
+requests==2.31.0
+pytz==2023.3
+PyYAML==6.0
+beautifulsoup4==4.12.2
+lxml==4.9.3
+google-generativeai==0.3.2
+feedparser==6.0.10 
