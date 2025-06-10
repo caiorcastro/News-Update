@@ -1,0 +1,127 @@
+{
+  "analysis_timestamp": "2025-06-10T11:50:00.410666",
+  "total_events_analyzed": 12,
+  "ai_analysis": "Como os dados fornecidos são de eventos esportivos em 2014 e 2025, e não há jogos de times brasileiros relevantes no período informado, não é possível gerar uma lista de 10 jogos relevantes para apostadores brasileiros seguindo os critérios estabelecidos.  Todos os eventos listados são de ligas estrangeiras (exceto os e-sports, que estão muito distantes no tempo), e não há jogos de seleções brasileiras ou competições como a Libertadores ou Copa do Mundo na lista.\n\n\nPara gerar uma lista relevante, seria necessário fornecer dados de eventos esportivos atuais ou futuros, incluindo jogos de times brasileiros, competições relevantes para o público brasileiro e datas/horários atuais.\n\n\n**Exemplo de como a resposta seria estruturada se dados relevantes fossem fornecidos:**\n\n**(Caso existissem jogos relevantes)**\n\n**1. Flamengo x Corinthians - Brasileirão Série A - 2024-10-27 - 16:00 BRT**\n\n* **Por que é relevante para apostas:** Clássico nacional, jogo de alta audiência, odds equilibradas (dependendo das posições dos times na tabela).\n* **Tipo de apostas mais populares esperadas:** Resultado final (1x2), Handicap asiático, Over/Under gols, Ambas as equipes marcam.\n* **Potencial de audiência estimado:** Muito alto (milhões de espectadores)\n\n\n**2.  Palmeiras x Athletico-PR - Copa Libertadores - 2024-11-03 - 21:00 BRT**\n\n* **Por que é relevante para apostas:** Semifinal de Libertadores, jogo de grande impacto, grande audiência.\n* **Tipo de apostas mais populares esperadas:** Resultado final (1x2), Handicap asiático, Over/Under gols, Marcadores.\n* **Potencial de audiência estimado:** Alto (milhões de espectadores)\n\n\n**(E assim por diante, até completar 10 jogos, caso haja dados suficientes para isso.)**\n",
+  "source_data": [
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "",
+      "home_score": "34",
+      "away_score": "33"
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium",
+      "home_score": "34",
+      "away_score": "17"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium",
+      "home_score": "14",
+      "away_score": "24"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium",
+      "home_score": "30",
+      "away_score": "27"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null,
+      "home_score": "4",
+      "away_score": "1"
+    },
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": ""
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null
+    }
+  ]
+}

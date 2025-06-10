@@ -1,0 +1,176 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-10T12:04:46.681689-03:00",
+    "data_type": "Programação Semanal",
+    "total_items": 15,
+    "collection_success": true,
+    "source": "data_collector_bruto"
+  },
+  "data": [
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": ""
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null
+    },
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": ""
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null
+    },
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": ""
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-06-10T12:04:46.685029",
+  "total_data_processed": 43,
+  "analysis_types": [
+    "noticias_curadas",
+    "eventos_analisados",
+    "impacto_mercado",
+    "estrategia_betmgm"
+  ],
+  "processing_success": true
+}

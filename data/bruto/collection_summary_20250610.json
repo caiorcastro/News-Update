@@ -1,0 +1,20 @@
+{
+  "collection_timestamp": "2025-06-10T12:04:46.681689-03:00",
+  "collection_date": "2025-06-10",
+  "collection_time": "12:04:46",
+  "timezone": "America/Sao_Paulo",
+  "statistics": {
+    "today": 5,
+    "tomorrow": 5,
+    "total_24h": 10,
+    "resultados_recentes": 8,
+    "eventos_esports": 2,
+    "programacao_semanal": 15,
+    "noticias_coletadas": 15,
+    "dados_mercado": 7,
+    "topicos_trending": 9,
+    "arquivos_antigos": 0
+  },
+  "total_items_collected": 76,
+  "collection_success": true
+}

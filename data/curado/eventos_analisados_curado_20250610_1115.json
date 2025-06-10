@@ -1,0 +1,127 @@
+{
+  "analysis_timestamp": "2025-06-10T11:14:59.061160",
+  "total_events_analyzed": 12,
+  "ai_analysis": "Não há jogos de times brasileiros, Seleção Brasileira, Libertadores ou Copa do Mundo nos dados fornecidos.  Todos os eventos esportivos listados são de 2014 ou 2025, e nenhum deles atende ao critério de relevância para apostadores brasileiros, exceto os jogos de e-sports.  Portanto, a lista será composta apenas de eventos de e-sports, já que os demais não atendem aos requisitos.\n\nComo não há informações sobre a relevância dos jogos de 2014 para apostadores brasileiros em 2024, eles serão descartados.\n\n**Lista dos 2 jogos mais importantes para apostadores brasileiros (baseada nos dados fornecidos):**\n\n**1. LOUD vs paiN Gaming**\n\n* **Times/Jogadores:** LOUD vs paiN Gaming (times de League of Legends)\n* **Competição:** CBLOL 2025\n* **Data e horário:** 2025-06-10 - 20:00:00 (assumindo horário de Brasília)\n* **Por que é relevante para apostas:**  Clássico da CBLOL, duas das maiores organizações de e-sports do Brasil se enfrentando.  Alta rivalidade e grande expectativa de público.\n* **Tipo de apostas mais populares esperadas:** Vencedor da partida, Handicap, Total de Kills, Primeiro Sangue, etc.\n* **Potencial de audiência estimado:** Alto.  Espera-se uma grande audiência online, principalmente no Twitch e YouTube.\n\n\n**2. FURIA vs MIBR**\n\n* **Times/Jogadores:** FURIA vs MIBR (times de Valorant)\n* **Competição:** VCT Americas\n* **Data e horário:** 2025-06-10 - 21:30:00 (assumindo horário de Brasília)\n* **Por que é relevante para apostas:**  Encontro entre duas equipes brasileiras de renome internacional no cenário competitivo de Valorant.  Jogo com grande potencial para odds competitivas, dependendo do desempenho das equipes até a data do jogo.\n* **Tipo de apostas mais populares esperadas:** Vencedor da partida, Mapas vencidos, Total de Rounds, etc.\n* **Potencial de audiência estimado:** Médio a Alto.  A audiência dependerá do desempenho das equipes na temporada e da fase da competição.\n\n\n\n**Observação:**  A lista contém apenas 2 jogos porque os dados fornecidos não incluem jogos relevantes para apostadores brasileiros além dos jogos de e-sports listados. Para uma lista mais completa, mais informações são necessárias, incluindo jogos de futebol de times brasileiros em competições relevantes, como Brasileirão, Copa do Brasil e Libertadores.\n",
+  "source_data": [
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "",
+      "home_score": "34",
+      "away_score": "33"
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium",
+      "home_score": "34",
+      "away_score": "17"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium",
+      "home_score": "14",
+      "away_score": "24"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium",
+      "home_score": "30",
+      "away_score": "27"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null,
+      "home_score": "4",
+      "away_score": "1"
+    },
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": ""
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null
+    }
+  ]
+}

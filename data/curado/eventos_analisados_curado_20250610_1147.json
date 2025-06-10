@@ -1,0 +1,127 @@
+{
+  "analysis_timestamp": "2025-06-10T11:46:32.058529",
+  "total_events_analyzed": 12,
+  "ai_analysis": "Não há jogos relevantes para apostadores brasileiros na lista fornecida.  Todos os eventos esportivos listados são de 2014 ou de 2025 e nenhum deles envolve times ou seleções brasileiras, nem competições com grande apelo no Brasil, exceto os jogos de e-sports, que ainda estão muito distantes no futuro (2025).\n\n\nPara ilustrar como a resposta seria se houvesse jogos relevantes, apresento um exemplo hipotético com dados fictícios de jogos em 2024:\n\n\n**Exemplo Hipotético de Jogos Relevantes (2024):**\n\n\n1. **Flamengo vs. Corinthians**\n    * **Competição:** Campeonato Brasileiro Série A\n    * **Data e Horário:** 2024-10-27 - 16:00 (horário de Brasília)\n    * **Por que é relevante para apostas:** Clássico nacional com grande rivalidade, alta audiência e odds equilibradas, dependendo da fase dos times.\n    * **Tipos de apostas populares:** Resultado final, Handicap Asiático, Mais/Menos gols, Ambos os times marcam.\n    * **Potencial de audiência estimado:** Mais de 10 milhões de espectadores.\n\n\n2. **Brasil vs. Argentina**\n    * **Competição:** Eliminatórias da Copa do Mundo\n    * **Data e Horário:** 2024-11-17 - 21:00 (horário de Brasília)\n    * **Por que é relevante para apostas:** Superclássico com grande apelo popular, jogo decisivo em uma competição importante,  muita atenção da mídia e apostas elevadas.\n    * **Tipos de apostas populares:** Resultado final, Handicap Asiático, Mais/Menos gols, Marcadores.\n    * **Potencial de audiência estimado:** Mais de 20 milhões de espectadores.\n\n\n3. **Palmeiras vs. Boca Juniors**\n    * **Competição:** Final da Copa Libertadores\n    * **Data e Horário:** 2024-11-24 - 17:00 (horário de Brasília)\n    * **Por que é relevante para apostas:** Final de competição continental de grande prestígio, confronto entre equipes fortes, grande interesse entre os apostadores.\n    * **Tipos de apostas populares:** Resultado final, Resultado ao intervalo/final, Marcador correto, número de cartões.\n    * **Potencial de audiência estimado:** Mais de 15 milhões de espectadores.\n\n\n4. **LOUD vs. FURIA**\n    * **Competição:** Final do CBLOL\n    * **Data e Horário:** 2024-12-15 - 18:00 (horário de Brasília)\n    * **Por que é relevante para apostas:** Final do campeonato de League of Legends mais popular do Brasil, envolvendo grandes times e forte base de fãs que também apostam.\n    * **Tipos de apostas populares:** Vencedor da partida, handicap, total de kills.\n    * **Potencial de audiência estimado:** Mais de 5 milhões de espectadores.\n\n\n*(Os demais 6 jogos seriam preenchidos com outros eventos relevantes com base nos mesmos critérios, considerando datas e horários plausíveis para o ano de 2024)*\n\n\nEste exemplo demonstra o formato de resposta requerido com dados fictícios,  mas a lista original não continha informações suficientes para gerar uma resposta real e significativa.\n",
+  "source_data": [
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "",
+      "home_score": "34",
+      "away_score": "33"
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium",
+      "home_score": "34",
+      "away_score": "17"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium",
+      "home_score": "14",
+      "away_score": "24"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium",
+      "home_score": "30",
+      "away_score": "27"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null,
+      "home_score": "4",
+      "away_score": "1"
+    },
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": ""
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null
+    }
+  ]
+}

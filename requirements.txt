@@ -1,0 +1,36 @@
+# Sistema de Relatório Esportivo Artplan - Dados Reais
+# Versão: 1.0.0
+
+# APIs do Google para Gmail
+google-auth>=2.16.0
+google-auth-oauthlib>=0.8.0
+google-auth-httplib2>=0.1.0
+google-api-python-client>=2.70.0
+
+# Google AI (Gemini) para curadoria inteligente
+google-generativeai>=0.3.0
+
+# Web scraping e requisições HTTP
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+feedparser>=6.0.0
+lxml>=4.9.0
+
+# Manipulação de dados e configurações
+pyyaml>=6.0
+python-dateutil>=2.8.0
+pytz>=2022.0
+
+# Futuras implementações (v2.0)
+# google-cloud-bigquery>=3.4.0  # Para armazenamento estruturado
+# pandas>=1.5.0                 # Para análise de dados
+# numpy>=1.21.0                 # Para processamento numérico
+
+# Logging e monitoramento
+colorlog>=6.7.0
+
+# Desenvolvimento e testes
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=22.0.0
+flake8>=5.0.0 

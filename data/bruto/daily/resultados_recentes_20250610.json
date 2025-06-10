@@ -1,0 +1,107 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-10T12:04:46.681689-03:00",
+    "data_type": "Resultados Recentes",
+    "total_items": 8,
+    "collection_success": true,
+    "source": "data_collector_bruto"
+  },
+  "data": [
+    {
+      "id": "2219509",
+      "home_team": "Flamengo",
+      "away_team": "Fortaleza",
+      "league": "Brazilian Serie A",
+      "date": "2025-06-01",
+      "time": "21:30:00",
+      "home_score": "5",
+      "away_score": "0",
+      "sport": "Soccer",
+      "venue": "Estádio do Maracanã"
+    },
+    {
+      "id": "2240834",
+      "home_team": "Flamengo",
+      "away_team": "Deportivo Táchira",
+      "league": "Copa Libertadores",
+      "date": "2025-05-29",
+      "time": "00:30:00",
+      "home_score": "1",
+      "away_score": "0",
+      "sport": "Soccer",
+      "venue": "Estádio do Maracanã"
+    },
+    {
+      "id": "2240842",
+      "home_team": "Palmeiras",
+      "away_team": "Sporting Cristal",
+      "league": "Copa Libertadores",
+      "date": "2025-05-29",
+      "time": "00:30:00",
+      "home_score": "6",
+      "away_score": "0",
+      "sport": "Soccer",
+      "venue": "Allianz Parque"
+    },
+    {
+      "id": "2219501",
+      "home_team": "Palmeiras",
+      "away_team": "Flamengo",
+      "league": "Brazilian Serie A",
+      "date": "2025-05-25",
+      "time": "19:00:00",
+      "home_score": "0",
+      "away_score": "2",
+      "sport": "Soccer",
+      "venue": "Allianz Parque"
+    },
+    {
+      "id": "2219511",
+      "home_team": "Corinthians",
+      "away_team": "Vitória",
+      "league": "Brazilian Serie A",
+      "date": "2025-06-01",
+      "time": "21:30:00",
+      "home_score": "0",
+      "away_score": "0",
+      "sport": "Soccer",
+      "venue": "Neo Química Arena"
+    },
+    {
+      "id": "2248971",
+      "home_team": "Corinthians",
+      "away_team": "Novorizontino",
+      "league": "Copa do Brasil",
+      "date": "2025-05-22",
+      "time": "00:30:00",
+      "home_score": "1",
+      "away_score": "0",
+      "sport": "Soccer",
+      "venue": "Neo Química Arena"
+    },
+    {
+      "id": "2240836",
+      "home_team": "São Paulo",
+      "away_team": "Talleres de Córdoba",
+      "league": "Copa Libertadores",
+      "date": "2025-05-27",
+      "time": "22:00:00",
+      "home_score": "2",
+      "away_score": "1",
+      "sport": "Soccer",
+      "venue": "Morumbi"
+    },
+    {
+      "id": "2219502",
+      "home_team": "São Paulo",
+      "away_team": "Mirassol",
+      "league": "Brazilian Serie A",
+      "date": "2025-05-24",
+      "time": "21:30:00",
+      "home_score": "0",
+      "away_score": "2",
+      "sport": "Soccer",
+      "venue": "Morumbi"
+    }
+  ]
+}

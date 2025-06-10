@@ -1,0 +1,127 @@
+{
+  "analysis_timestamp": "2025-06-10T11:37:45.759377",
+  "total_events_analyzed": 12,
+  "ai_analysis": "Não há jogos relevantes para apostadores brasileiros na lista de eventos fornecida.  Todos os eventos esportivos listados são de 2014 ou de uma data futura muito distante (2025),  e não incluem times ou competições brasileiras de grande apelo popular  como a Série A do Campeonato Brasileiro, Copa do Brasil, Libertadores, ou jogos da Seleção Brasileira.  Os jogos de futebol americano e de futebol australiano também não têm grande audiência no Brasil.\n\nEmbora os jogos de e-sports LOUD vs paiN Gaming e FURIA vs MIBR sejam relevantes para apostadores brasileiros, a data de 2025 é muito distante para uma análise confiável de apostas.  Para fornecer uma resposta útil, preciso de dados de eventos esportivos atuais ou com data mais próxima que incluam competições e times brasileiros.\n",
+  "source_data": [
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "",
+      "home_score": "34",
+      "away_score": "33"
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium",
+      "home_score": "34",
+      "away_score": "17"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium",
+      "home_score": "14",
+      "away_score": "24"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium",
+      "home_score": "30",
+      "away_score": "27"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null,
+      "home_score": "4",
+      "away_score": "1"
+    },
+    {
+      "id": "1140834",
+      "home_team": "Toronto Argonauts",
+      "away_team": "Hamilton Tiger-Cats",
+      "league": "CFL",
+      "date": "2014-10-10",
+      "time": "23:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": ""
+    },
+    {
+      "id": "1168911",
+      "home_team": "Stanford",
+      "away_team": "Washington State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Stanford Stadium"
+    },
+    {
+      "id": "1168912",
+      "home_team": "New Mexico",
+      "away_team": "San Diego State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "21:30:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "University Stadium"
+    },
+    {
+      "id": "1168913",
+      "home_team": "UNLV",
+      "away_team": "Fresno State",
+      "league": "NCAA Division 1",
+      "date": "2014-10-10",
+      "time": "22:00:00",
+      "status": null,
+      "sport": "American Football",
+      "venue": "Sam Boyd Stadium"
+    },
+    {
+      "id": "441043",
+      "home_team": "Melbourne Victory",
+      "away_team": "Western Sydney Wanderers FC",
+      "league": "Australian A-League",
+      "date": "2014-10-10",
+      "time": "08:40:00+00:00",
+      "status": null,
+      "sport": "Soccer",
+      "venue": null
+    }
+  ]
+}

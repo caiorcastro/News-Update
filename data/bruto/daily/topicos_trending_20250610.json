@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-10T12:04:46.681689-03:00",
+    "data_type": "Tópicos em Alta",
+    "total_items": 1,
+    "collection_success": true,
+    "source": "data_collector_bruto"
+  },
+  "data": {
+    "period": "24h",
+    "trending_keywords": [
+      {
+        "keyword": "botafogo",
+        "mentions": 5
+      },
+      {
+        "keyword": "flamengo",
+        "mentions": 3
+      },
+      {
+        "keyword": "são paulo",
+        "mentions": 3
+      },
+      {
+        "keyword": "palmeiras",
+        "mentions": 1
+      },
+      {
+        "keyword": "fluminense",
+        "mentions": 1
+      },
+      {
+        "keyword": "santos",
+        "mentions": 1
+      },
+      {
+        "keyword": "corinthians",
+        "mentions": 1
+      },
+      {
+        "keyword": "brasileirão",
+        "mentions": 1
+      },
+      {
+        "keyword": "neymar",
+        "mentions": 1
+      }
+    ],
+    "related_news": [
+      {
+        "title": "Adversário do Botafogo, Atlético de Madrid divulga lista para Copa de Clubes com reforço",
+        "description": "Espanhóis anunciaram a contratação em definitivo do goleiro Juan Musso, que faz parte da lista com 30 jogadores selecionados para Copa do Mundo de Clubes De Paul, do Atlético de Madrid, participa de quiz sobre o Botafogo O Atlético de Madrid divulgou a lista com 30 jogadores que viajarão para disput...",
+        "link": "https://ge.globo.com/futebol/mundial-de-clubes/noticia/2025/06/10/adversario-do-botafogo-atletico-de-madrid-divulga-lista-para-copa-de-clubes-com-reforco.ghtml",
+        "source": "GloboEsporte",
+        "date": "Tue, 10 Jun 2025 14:44:07 -0000",
+        "category": "Mercado da Bola"
+      },
+      {
+        "title": "Kaio Pantaleão é regularizado no BID e pode estrear pelo Botafogo",
+        "description": "Novo zagueiro do Alvinegro está entre os relacionados para a Copa do Mundo de Clubes Recém-chegado ao Botafogo, o zagueiro Kaio Pantaleão agora tem condições de jogo. O reforço foi regularizado no Boletim Informativo Diário (BID) da CBF e poderá estrear pelo Alvinegro. Ele é um dos inscritos na Copa...",
+        "link": "https://ge.globo.com/futebol/times/botafogo/noticia/2025/06/10/kaio-pantaleao-e-regularizado-no-bid-e-pode-estrear-pelo-botafogo.ghtml",
+        "source": "GloboEsporte",
+        "date": "Tue, 10 Jun 2025 14:10:23 -0000",
+        "category": "Mercado da Bola"
+      },
+      {
+        "title": "Chelsea comete gafe e troca Flamengo por time mexicano em post sobre o Mundial de Clubes",
+        "description": "O escudo e o nome dos mexicanos foram incluídos no lugar dos cariocas em publicação com a data em que a equipe de Londres enfrentará justamente o Flamengo",
+        "link": "https://www.espn.com.br/futebol/flamengo/artigo/_/id/15292440/chelsea-comete-gafe-flamengo-time-mexicano-post-mundial-de-clubes",
+        "source": "ESPN Brasil",
+        "date": "Tue, 10 Jun 2025 09:39:59 EST",
+        "category": "Esportes"
+      },
+      {
+        "title": "Flamengo ironiza Chelsea após ser 'ignorado' em post: 'Hola que tal?'",
+        "description": "null",
+        "link": "https://www.espn.com.br/futebol/flamengo/artigo/_/id/15292539/flamengo-ironiza-chelsea-apos-ser-ignorado-por-clube-ingles-em-post-sobre-mundial",
+        "source": "ESPN Brasil",
+        "date": "Tue, 10 Jun 2025 09:39:57 EST",
+        "category": "Esportes"
+      },
+      {
+        "title": "No Mundial, Flamengo, Palmeiras e Fluminense 'dividem' avião milionário que foi desejo até do Manchester City",
+        "description": "Palmeiras, Flamengo e Fluminense usarão mesmo avião, enquanto Botafogo optou por outro logística rumo aos EUA",
+        "link": "https://www.espn.com.br/futebol/artigo/_/id/15291042/no-mundial-flamengo-palmeiras-e-fluminense-dividem-aviao-milionario-foi-desejo-ate-do-manchester-city",
+        "source": "ESPN Brasil",
+        "date": "Tue, 10 Jun 2025 09:39:59 EST",
+        "category": "Esportes"
+      },
+      {
+        "title": "Fórmula E anuncia calendário recorde da temporada 2025-2026; veja data de São Paulo",
+        "description": "A Fórmula E anunciou o maior calendário de sua história, com 18 etapas compondo a temporada 2025-2026, com o Brasil sediando a abertura.Leia também:Fórmula 1F1 revela calendário da temporada 2026 com a estreia de Madri; saiba quando será o GP de São PauloFIA F2F2 e F3 revelam calendários da temporad...",
+        "link": "https://motorsport.uol.com.br/formula-e/news/formula-e-anuncia-calendario-recorde-da-temporada-2025-2026-veja-data-de-sao-paulo/10731270/",
+        "source": "UOL Esporte",
+        "date": "Ter, 10 Jun 2025 12:01:48 -0300",
+        "category": "Esportes"
+      },
+      {
+        "title": "São Paulo receberá corrida de abertura da 'maior temporada' da Fórmula E",
+        "description": "A Fórmula E definiu São Paulo como a cidade que receberá a abertura da temporada 2025/26 da categoria.",
+        "link": "https://www.uol.com.br/esporte/ultimas-noticias/2025/06/10/formula-e-abertura-temporada-sao-paulo.htm",
+        "source": "UOL Esporte",
+        "date": "Ter, 10 Jun 2025 12:00:00 -0300",
+        "category": "Esportes"
+      },
+      {
+        "title": "Kaio Pantaleão aparece no BID e está liberado para jogar pelo Botafogo",
+        "description": "Reforço do Botafogo, o zagueiro Kaio Pantaleão teve a sua documentação regularizada na Confederação Brasileira de Futebol (CBF). O nome do atleta apareceu no BID (Boletim Informativo Diário) nesta terça-feira e, portanto, ele está livre para defender o clube carioca.",
+        "link": "https://www.uol.com.br/esporte/futebol/ultimas-noticias/gazeta-esportiva/2025/06/10/kaio-pantaleao-aparece-no-bid-e-esta-liberado-para-jogar-pelo-botafogo.htm",
+        "source": "UOL Esporte",
+        "date": "Ter, 10 Jun 2025 11:58:44 -0300",
+        "category": "Esportes"
+      },
+      {
+        "title": "Yuri Alberto e jovens do Botafogo, Inter e São Paulo crescem no Transfermarkt",
+        "description": "O&nbsp;atacante Yuri Alberto foi o jogador que mais se valorizou na atualiza&ccedil;&atilde;o dos valores de mercado do&nbsp;Brasileir&atilde;o no Transfermarkt. O jogador do&nbsp;Corinthians teve...",
+        "link": "https://www.transfermarkt.com.br/yuri-alberto-e-jovens-do-botafogo-inter-e-sao-paulo-crescem-no-transfermarkt/view/news/455062",
+        "source": "Transfermarkt",
+        "date": "Fri, 06 Jun 2025 17:00:00 +0200",
+        "category": "Mercado da Bola"
+      }
+    ]
+  }
+}
